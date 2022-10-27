@@ -16,7 +16,7 @@ public class HelloWorldServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String name = req.getParameter("name");
-        res.setContentType("text/html");
+        res.setContentType("text/html"); // you don't need to set a content type for text/html
         PrintWriter out = res.getWriter();
         out.println("<h1>Hello, " + name +"!</h>");
     }
