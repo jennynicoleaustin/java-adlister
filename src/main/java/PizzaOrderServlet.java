@@ -9,15 +9,21 @@ import java.io.IOException;
 @WebServlet(name = "PizzaOrderServlet", urlPatterns = "/pizza-order")
 
 public class PizzaOrderServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String sauce = request.getParameter("sauce");
-        String crust = request.getParameter("crust");
-        String size = request.getParameter("size");
+// This links the jsp file and the servlet
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/pizza-order.jsp").forward(req, resp);
+    }
 
-        request.setAttribute("sauce", sauce);
-        request.setAttribute("crust", crust);
-        request.setAttribute("size", size);
-        request.getRequestDispatcher("../webapp/pizza-order.jsp").forward(request, response);
+    // This prints in the console inside of intellij "services" tab
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(req.getParameter("crust"));
+        System.out.println(req.getParameter("sauce"));
+        System.out.println(req.getParameter("size"));
+        System.out.println(req.getParameter("address"));
+        String[] toppings = req.getParameterValues("toppings");
+        for (String topping : toppings) {
+            System.out.println(topping);
+        }
     }
 
 }
