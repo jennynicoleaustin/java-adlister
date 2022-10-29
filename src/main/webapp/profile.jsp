@@ -12,7 +12,6 @@
 <body>
 
 <h1>Welcome, Admin</h1>
-<p>Username: ${username}</p>
 
 </body>
 </html>
