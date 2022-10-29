@@ -22,6 +22,7 @@
     <title>Login</title>
 </head>
 <body>
+<%@ include file="partials/navbar.jsp"%>
 <h1>LOGIN</h1>
 <form action="/login.jsp" method="post">
     <label for="username">Username</label>
