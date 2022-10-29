@@ -22,3 +22,19 @@ Print on the page....
 Best practice
 - minimize the amount of scriptlet code in a jsp
     - use separate java class, or MVC
+
+JSP Declarations
+
+<%! declare a method %>
+
+- Allow you to declare a method in the JSP page
+    - call the method in the same JSP page
+
+Call hava class from JSP
+
+1. Create a java class
+2. call it from the JSP page
+    - <%= packageName.className.methodName() %>
+    - OR import the class at the top of the jsp page
+        - <%@ page import="packageName.className" %>
+
