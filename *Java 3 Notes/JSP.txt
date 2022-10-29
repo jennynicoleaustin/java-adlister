@@ -14,4 +14,11 @@ JSP Scriptlet
 
 <% one to multiple lines of java code %>
 
-- in order to include content on the page use: out.println(...)
+- code inside the <%%> is executed top down
+
+Print on the page....
+    - in order to include content on the page use: out.println(...)
+
+Best practice
+- minimize the amount of scriptlet code in a jsp
+    - use separate java class, or MVC
