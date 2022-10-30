@@ -42,4 +42,7 @@ public class Ad {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String toString() {
+        return "id:" + id + " user id:" + userId + " title:" + title + " description:" + description;
+    }
 }
