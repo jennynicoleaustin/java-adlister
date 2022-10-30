@@ -7,6 +7,7 @@ import java.io.IOException;
 
 @WebServlet(name = "GuessServlet", urlPatterns = "/guess")
 
+//Bonus: If a user submits a number other than 1, 2, or 3, redirect them back to the guessing form.
 
 public class GuessServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,8 +21,11 @@ public class GuessServlet extends HttpServlet {
         String incorrectURL = "/incorrect";
         if (guess.equals("2")) {
             resp.sendRedirect(correctURL);
-        } else {
+        } else if (guess.equals("1") || guess.equals("3")){
             resp.sendRedirect(incorrectURL);
+        } else {
+            resp.sendRedirect("/guess");
+
         }
     }
 }
