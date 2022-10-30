@@ -20,11 +20,11 @@ public class PickColorServlet extends HttpServlet {
         req.getRequestDispatcher("/pick-color.jsp").forward(req, resp);
 
     }
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+//This creates a query string and then the color variable is called using ${color} on the jsp file.
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String color = req.getParameter("color");
-
-        System.out.println(req.getParameter("color"));
-
+        String url = "/view-color?color=" + color;
+        resp.sendRedirect(url);
     }
 
 }

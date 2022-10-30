@@ -5,7 +5,7 @@
     <title>Pick Color</title>
 </head>
 <body>
-<form action="/view-color/${color}">
+<form action="/pick-color" method="post">
 <label for="color">Enter your favorite color:</label>
 <input type="text" id="color" name="color" />
 <input type="submit" value="Submit">

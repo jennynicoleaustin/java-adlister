@@ -9,6 +9,11 @@ import java.io.IOException;
 @WebServlet(name = "ViewColorServlet", urlPatterns = "/view-color")
 public class ViewColorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String color = req.getParameter("color");
+        if (color == null) {
+            color = "transparent";
+        }
+        req.setAttribute("color", color);
         req.getRequestDispatcher("/view-color.jsp").forward(req, resp);
     }
 
