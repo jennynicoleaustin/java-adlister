@@ -1,14 +1,14 @@
-<%--This file will show a listing of all the ads on your site.--%>
-<%--Use the all method on the ListAdsDao class to get a listing of all the ads, and pass this on to your JSP file.
-In your JSP file, loop through all the ads and display each one.--%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Ads</title>
+    <jsp:include page="/partials/head.jsp">
+        <jsp:param name="title" value="Viewing All The Ads" />
+    </jsp:include>
 </head>
 <body>
+<jsp:include page="/partials/navbar.jsp" />
+
 <div class="container">
     <h1>Here Are all the ads!</h1>
 
@@ -19,5 +19,6 @@ In your JSP file, loop through all the ads and display each one.--%>
         </div>
     </c:forEach>
 </div>
+
 </body>
 </html>
