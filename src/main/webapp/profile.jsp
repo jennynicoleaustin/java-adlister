@@ -1,17 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-
-<!doctype html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin</title>
+    <jsp:include page="partials/head.jsp">
+        <jsp:param name="title" value="Your Profile" />
+    </jsp:include>
 </head>
 <body>
-<%@ include file="partials/navbar.jsp"%>
-<h1>Welcome, Admin</h1>
+    <jsp:include page="partials/navbar.jsp" />
+
+    <div class="container">
+        <h1>Viewing your profile.</h1>
+    </div>
 
 </body>
 </html>
