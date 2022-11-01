@@ -1,0 +1,40 @@
+::::: JSP NOTES :::::
+
+JSP Expression
+
+<%= some java code %>
+- When a java object is placed inside the tags, the rendered version is basically the "toString" method of that java object.
+
+- types of objects to use inside the expression
+    - object expressions "toString"
+    - mathematical expressions
+    - boolean expressions
+
+JSP Scriptlet
+
+<% one to multiple lines of java code %>
+
+- code inside the <%%> is executed top down
+
+Print on the page....
+    - in order to include content on the page use: out.println(...)
+
+Best practice
+- minimize the amount of scriptlet code in a jsp
+    - use separate java class, or MVC
+
+JSP Declarations
+
+<%! declare a method %>
+
+- Allow you to declare a method in the JSP page
+    - call the method in the same JSP page
+
+Call hava class from JSP
+
+1. Create a java class
+2. call it from the JSP page
+    - <%= packageName.className.methodName() %>
+    - OR import the class at the top of the jsp page
+        - <%@ page import="packageName.className" %>
+

@@ -1,0 +1,17 @@
+- A common pattern in Java is to create a class to handle our interactions with the database.
+
+- This type of class is called a data access object (DAO), or data access class.
+
+It is common to design DAOs behind an interface, meaning that we create an interface that describes what the DAO does, or what operations it supports, and a class that implements the interface to actually access the data.
+
+The rest of our application will then refer to this interface (as opposed to referring to the implementation directly). This allows us to easily swap out the implementation of our DAOs.
+
+- DAOs provide the interface to CRUD (create, read, update, destroy) operations for a given entity. Usually each method defined on a DAO maps to a CRUD operation for that resource, and the basic CRUD operations are a good starting place for methods to put on a DAO.
+
+- This pattern becomes very useful in combination with a factory: a class for creating objects. We can use a factory to create instances of our DAOs for us, and to allow us to reuse an existing instance. The factory is also how the rest of our application can gain access to our DAOs.
+
+-Creating new products (and in general, any operation that involves a user filling out a form) involves two separate HTTP requests:
+
+ GET -- Navigate to the page that shows the form for creating a new product
+ POST -- Fill out and submit the form
+ This means that we'll need to write two separate methods for handling each request.

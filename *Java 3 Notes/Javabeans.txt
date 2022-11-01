@@ -1,0 +1,12 @@
+Representing Entities with Beans
+
+We will use beans to represent the entities in our application. An entity is a singular, identifiable object within the problem space our application is operating in. Usually each entity is represented by a database table.
+
+A JavaBean, or bean, is a Java class that
+
+- provides a zero-argument constructor
+- has getters and setters for all instance variables
+- implements the Serializable or Externalizable interface1
+
+This class does not perform any complex logic or control flow
+-- it only serves as a way to group properties
