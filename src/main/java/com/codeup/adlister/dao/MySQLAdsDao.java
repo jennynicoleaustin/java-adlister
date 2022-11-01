@@ -1,15 +1,19 @@
+package com.codeup.adlister.dao;
+
+import com.codeup.adlister.Config;
+import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-//Create a class named MySQLAdsDao that implements the Ads interface
+//Create a class named com.codeup.adlister.dao.MySQLAdsDao that implements the com.codeup.adlister.dao.Ads interface
 //
 //This class should have a private instance property named connection of type Connection that is initialized in the constructor
-// Define your constructor so that it accepts an instance of your Config class so that it can obtain the database credentials.
-//Implement the methods in the Ads interface
+// Define your constructor so that it accepts an instance of your com.codeup.adlister.Config class so that it can obtain the database credentials.
+//Implement the methods in the com.codeup.adlister.dao.Ads interface
 //The connection object will be created just once, in this class' constructor, and the individual methods that query the database should use the connection object to create statements.
-public class MySQLAdsDao implements Ads{
+public class MySQLAdsDao implements Ads {
 
 private Connection connection = null;
 
