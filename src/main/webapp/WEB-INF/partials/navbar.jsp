@@ -4,6 +4,9 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">Adlister</a>
         </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/ads/create">Create Ad</a>
+        </div>
         <ul class="nav navbar-nav">
             <li><a href="/login">Login</a></li>
         </ul>

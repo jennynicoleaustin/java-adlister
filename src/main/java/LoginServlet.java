@@ -8,13 +8,11 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") == null) {
-            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-
-        } else {
+        if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
+            return;
         }
-
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
