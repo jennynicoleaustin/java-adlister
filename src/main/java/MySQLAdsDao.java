@@ -47,7 +47,7 @@ private Connection connection = null;
     }
     private Ad rsToAd (ResultSet rs) throws SQLException {
         return new Ad(
-                rs.getLong("id"),
+                rs.getLong("ad_id"),
                 rs.getLong("user_id"),
                 rs.getString("title"),
                 rs.getString("description")
