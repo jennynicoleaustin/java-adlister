@@ -33,12 +33,8 @@ private Connection connection = null;
 //insert new ads into the database
     @Override
     public Long insert(Ad ad) throws SQLException {
-        String sql = "INSERT INTO ads (user_id, title, description) VALUES (?, ?, ?)";
-        PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        stmt.setLong(1, ad.getId());
-        stmt.setString(2, ad.getTitle());
-        stmt.setString(3, ad.getDescription());
-        stmt.executeUpdate();
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate(insertQuery(ad), Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stmt.getGeneratedKeys();
         rs.next();
         return rs.getLong(1);
