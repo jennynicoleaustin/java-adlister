@@ -10,10 +10,6 @@ import java.sql.*;
 public class MySQLUsersDao implements Users{
     private Connection connection = null;
 
-    @Override
-    public User findByUsername(String username) {
-        return null;
-    }
     public MySQLUsersDao(Config config) throws SQLException {
         DriverManager.registerDriver(new Driver());
         connection = DriverManager.getConnection(
@@ -21,6 +17,25 @@ public class MySQLUsersDao implements Users{
                 config.getUser(),
                 config.getPassword()
         );
+    }
+
+    @Override
+    public User findByUsername(String username) throws SQLException {
+        String sql = "SELECT username FROM users where username = ? LIMIT 1";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+        if(!rs.next()) {
+            return null;
+        }
+        rs.next();
+        User user = new User(
+                rs.getLong("user_id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("password")
+        );
+        return user;
     }
     @Override
     public Long insert(User user) throws SQLException {
@@ -34,4 +49,5 @@ public class MySQLUsersDao implements Users{
         rs.next();
         return rs.getLong(1);
     }
+
 }
