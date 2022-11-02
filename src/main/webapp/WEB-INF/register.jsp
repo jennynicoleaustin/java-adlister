@@ -18,7 +18,7 @@
 <form action="/register" method="post">
     <div class="mb-3">
         <label for="username" class="form-label">Username </label>
-        <input class="form-control" id="username" name="registerUsername" type="username">
+        <input class="form-control" id="username" name="username" type="username">
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
