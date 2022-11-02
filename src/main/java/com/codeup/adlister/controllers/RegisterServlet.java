@@ -37,7 +37,6 @@ public class RegisterServlet extends HttpServlet {
         boolean validAttempt = password != null && email != null && username != null;
 
         // TODO: create a new user based off of the submitted information
-        if (validAttempt) {
             User user = new User(username, email, password);
             try {
                 DaoFactory.getUsersDao().insert(user);
@@ -46,9 +45,9 @@ public class RegisterServlet extends HttpServlet {
             }
             request.getSession().setAttribute("user", username);
             response.sendRedirect("/profile");
-        } else {
-            response.sendRedirect("/register");
-        }
+
+//            response.sendRedirect("/register");
+
 
         // TODO: if a user was successfully created, send them to their profile
 
