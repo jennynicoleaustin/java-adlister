@@ -19,25 +19,20 @@ public class RegisterServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-// TODO: 11/2/22  grab data to check.
+// TODO: 11/2/22  grab data
         String password1 = request.getParameter("registerPassword1");
         String password2 = request.getParameter("registerPassword2");
         String username = request.getParameter("username");
         String email = request.getParameter("registerEmail");
-        String password;
+//        String password;
         // TODO: ensure the submitted information is valid
         // Valid Password
-        if (password1.equals(password2)) {
-            password = password1;
-        } else {
-            password = null;
-        } // how do I make this not so bulky...
-        System.out.println(username + password + email);
-
-        boolean validAttempt = password != null && email != null && username != null;
-
-        // TODO: create a new user based off of the submitted information
-            User user = new User(username, email, password);
+        boolean validPassword = password1.equals(password2);
+        System.out.println(password1 + " " + email + " " + username);
+        boolean validAttempt = !email.isEmpty() && !username.isEmpty() && validPassword;
+        if (validAttempt) {
+            // TODO: create a new user based off of the submitted information
+            User user = new User(username, email, password1);
             try {
                 DaoFactory.getUsersDao().insert(user);
                 request.getSession().setAttribute("user", username);
@@ -45,14 +40,9 @@ public class RegisterServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
-
-//            response.sendRedirect("/register");
-
-
-        // TODO: if a user was successfully created, send them to their profile
-
-
+        } else {
+            response.sendRedirect("/register");
+        }
 
     }
 }
