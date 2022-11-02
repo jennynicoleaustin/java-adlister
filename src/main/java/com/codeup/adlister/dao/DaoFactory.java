@@ -17,7 +17,8 @@ public class DaoFactory {
     }
     public static Users getUsersDao() throws SQLException {
         if (usersDao == null) {
-            usersDao = new MySQLUsersDao();
+            Config config = new Config();
+            usersDao = new MySQLUsersDao(config);
         }
         return usersDao;
     }
