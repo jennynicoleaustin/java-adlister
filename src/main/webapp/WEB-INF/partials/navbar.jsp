@@ -5,14 +5,16 @@
             <a class="navbar-brand" href="/ads">Adlister</a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="/ads/create">Create com.codeup.adlister.models.Ad</a>
+            <a class="navbar-brand" href="/ads/create">Create</a>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/login">Login</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/logout">Logout</a></li>
-        </ul>
+        </ul>        <ul class="nav navbar-nav navbar-right">
+        <li><a href="/register">Register</a></li>
+    </ul>
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

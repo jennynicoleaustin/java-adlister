@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class DaoFactory {
     private static Ads adsDao;
+    private static Users usersDao;
 
     public static Ads getAdsDao() throws SQLException {
         if (adsDao == null) {
@@ -13,5 +14,11 @@ public class DaoFactory {
             adsDao = new MySQLAdsDao(config);
         }
         return adsDao;
+    }
+    public static Users getUsersDao() throws SQLException {
+        if (usersDao == null) {
+            usersDao = new MySQLUsersDao();
+        }
+        return usersDao;
     }
 }
