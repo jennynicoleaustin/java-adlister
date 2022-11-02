@@ -7,12 +7,8 @@ import com.mysql.cj.jdbc.Driver;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-//Create a class named com.codeup.adlister.dao.MySQLAdsDao that implements the com.codeup.adlister.dao.Ads interface
-//
-//This class should have a private instance property named connection of type Connection that is initialized in the constructor
-// Define your constructor so that it accepts an instance of your com.codeup.adlister.Config class so that it can obtain the database credentials.
-//Implement the methods in the com.codeup.adlister.dao.Ads interface
-//The connection object will be created just once, in this class' constructor, and the individual methods that query the database should use the connection object to create statements.
+
+// TODO: 11/2/22 Refactor your MySQLAdsDao to use prepared statements. Test these changes and ensure everything still works.
 public class MySQLAdsDao implements Ads {
 
 private Connection connection = null;
@@ -27,6 +23,7 @@ private Connection connection = null;
     }
 //    Your methods should retrieve ads from the database
     @Override
+//    Do I need to refactor this to include a prepared stmt, if the statement does not include user input?
     public List<Ad> all() throws SQLException {
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
@@ -36,8 +33,12 @@ private Connection connection = null;
 //insert new ads into the database
     @Override
     public Long insert(Ad ad) throws SQLException {
-        Statement stmt = connection.createStatement();
-        stmt.executeUpdate(insertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+        String sql = "INSERT INTO ads (user_id, title, description) VALUES (?, ?, ?)";
+        PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        stmt.setLong(1, ad.getId());
+        stmt.setString(2, ad.getTitle());
+        stmt.setString(3, ad.getDescription());
+        stmt.executeUpdate();
         ResultSet rs = stmt.getGeneratedKeys();
         rs.next();
         return rs.getLong(1);
