@@ -25,7 +25,6 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("registerEmail");
         String password;
-
         // TODO: ensure the submitted information is valid
         // Valid Password
         if (password1.equals(password2)) {
@@ -33,6 +32,8 @@ public class RegisterServlet extends HttpServlet {
         } else {
             password = null;
         } // how do I make this not so bulky...
+        System.out.println(username + password + email);
+
         boolean validAttempt = password != null && email != null && username != null;
 
         // TODO: create a new user based off of the submitted information
