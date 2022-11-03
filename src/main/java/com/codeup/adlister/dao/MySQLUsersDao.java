@@ -20,22 +20,26 @@ public class MySQLUsersDao implements Users{
     }
 
     @Override
-    public User findByUsername(String username) throws SQLException {
-        String sql = "SELECT username FROM users where username = ? LIMIT 1";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, username);
-        ResultSet rs = stmt.executeQuery();
-        if(!rs.next()) {
-            return null;
+    public User findByUsername(String username) {
+        try {
+            String sql = "SELECT * FROM users where username = ? LIMIT 1";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if(!rs.next()) {
+                System.out.println("null");
+                return null;
+            }
+            User user = new User(
+                    rs.getLong(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4)
+            );
+            return user;
+        } catch(SQLException e){
+            throw new RuntimeException("Sorry could not find user", e);
         }
-        rs.next();
-        User user = new User(
-                rs.getLong("user_id"),
-                rs.getString("username"),
-                rs.getString("email"),
-                rs.getString("password")
-        );
-        return user;
     }
     @Override
     public Long insert(User user) throws SQLException {

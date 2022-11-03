@@ -15,11 +15,16 @@ public class DaoFactory {
         }
         return adsDao;
     }
-    public static Users getUsersDao() throws SQLException {
-        if (usersDao == null) {
-            Config config = new Config();
-            usersDao = new MySQLUsersDao(config);
+    public static Users getUsersDao() {
+        try {
+            if (usersDao == null) {
+                Config config = new Config();
+                usersDao = new MySQLUsersDao(config);
+            }
+            return usersDao;
+        } catch(SQLException e) {
+            throw new RuntimeException("Could not connect", e);
         }
-        return usersDao;
+
     }
 }
