@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,22 +21,20 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 // TODO: 11/2/22  grab data
-        String password1 = request.getParameter("registerPassword1");
-        String password2 = request.getParameter("registerPassword2");
         String username = request.getParameter("username");
         String email = request.getParameter("registerEmail");
-//        String password;
-        // TODO: ensure the submitted information is valid
-        // Valid Password
-        boolean validPassword = password1.equals(password2);
-        System.out.println(password1 + " " + email + " " + username);
-        boolean validAttempt = !email.isEmpty() && !username.isEmpty() && validPassword;
+// Hash passwords before they are added to database
+        boolean passwordsMatch = (request.getParameter("registerPassword1")).equals(request.getParameter("registerPassword2"));
+        String hashPassword = BCrypt.hashpw((request.getParameter("registerPassword1")), BCrypt.gensalt());
+
+// Ensure inputs are valid before creating a new user.
+        boolean validAttempt = !email.isEmpty() && !username.isEmpty() && passwordsMatch;
         if (validAttempt) {
             // TODO: create a new user based off of the submitted information
-            User user = new User(username, email, password1);
+            User user = new User(username, email, hashPassword);
             try {
                 DaoFactory.getUsersDao().insert(user);
-                request.getSession().setAttribute("user", username);
+                request.getSession().setAttribute("user", user);
                 response.sendRedirect("/profile");
             } catch (SQLException e) {
                 throw new RuntimeException(e);

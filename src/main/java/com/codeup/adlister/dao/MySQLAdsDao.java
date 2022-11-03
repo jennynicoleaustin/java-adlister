@@ -44,12 +44,7 @@ private Connection connection = null;
         return rs.getLong(1);
     }
 
-//    private String insertQuery(Ad ad) {
-//        return "INSERT INTO ads(user_id, title, description) VALUES "
-//                + "(" + ad.getUserId() + ", "
-//                + "'" + ad.getTitle() +"', "
-//                + "'" + ad.getDescription() + "')";
-//    }
+
     private Ad rsToAd (ResultSet rs) throws SQLException {
         return new Ad(
                 rs.getLong("ad_id"),
