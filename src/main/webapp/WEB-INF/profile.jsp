@@ -10,7 +10,7 @@
 
     <div class="container">
         <h1>Welcome,
-            <c:out value="${sessionScope.user}"/>
+            ${sessionScope.user.username}
         </h1>
 
     </div>

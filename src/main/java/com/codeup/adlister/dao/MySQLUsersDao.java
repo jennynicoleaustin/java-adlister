@@ -7,7 +7,7 @@ import com.mysql.cj.jdbc.Driver;
 import java.sql.*;
 
 
-public class MySQLUsersDao implements Users{
+public class MySQLUsersDao implements Users {
     private Connection connection = null;
 
     public MySQLUsersDao(Config config) throws SQLException {
@@ -25,22 +25,12 @@ public class MySQLUsersDao implements Users{
             String sql = "SELECT * FROM users where username = ? LIMIT 1";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-            if(!rs.next()) {
-                System.out.println("null");
-                return null;
-            }
-            User user = new User(
-                    rs.getLong(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4)
-            );
-            return user;
-        } catch(SQLException e){
+            return extracctUser(stmt.executeQuery());
+        } catch (SQLException e) {
             throw new RuntimeException("Sorry could not find user", e);
         }
     }
+
     @Override
     public Long insert(User user) throws SQLException {
         String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
@@ -54,4 +44,16 @@ public class MySQLUsersDao implements Users{
         return rs.getLong(1);
     }
 
+    private User extracctUser(ResultSet rs) throws SQLException {
+        if (!rs.next()) {
+            System.out.println("null");
+            return null;
+        }
+        return new User(
+                rs.getLong(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4)
+        );
+    }
 }
