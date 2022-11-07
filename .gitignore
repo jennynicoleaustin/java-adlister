@@ -1,2 +1,5 @@
 
-# comment
+*.iml
+target/
+.idea/
+Config.java
