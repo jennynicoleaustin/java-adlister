@@ -16,11 +16,15 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: show the registration form
+        if (request.getSession().getAttribute("user") != null) {
+            response.sendRedirect("/profile");
+            return;
+        }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-// TODO: 11/2/22  grab data
+// grab data
         String username = request.getParameter("username");
         String email = request.getParameter("registerEmail");
 // Hash passwords before they are added to database

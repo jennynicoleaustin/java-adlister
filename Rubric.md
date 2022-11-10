@@ -23,7 +23,7 @@ ___ can fully CRUD users and ads
 
 ___ ad searching and (or) sorting implemented
 
-___ all added features demoed and all app-related questions adequetly addressed
+___ all added features demoed and all app-related questions adequately addressed
 
 ___ at least two of the following features added:
 

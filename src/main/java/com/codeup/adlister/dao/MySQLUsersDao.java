@@ -25,7 +25,7 @@ public class MySQLUsersDao implements Users {
             String sql = "SELECT * FROM users where username = ? LIMIT 1";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, username);
-            return extracctUser(stmt.executeQuery());
+            return extractUser(stmt.executeQuery());
         } catch (SQLException e) {
             throw new RuntimeException("Sorry could not find user", e);
         }
@@ -44,7 +44,7 @@ public class MySQLUsersDao implements Users {
         return rs.getLong(1);
     }
 
-    private User extracctUser(ResultSet rs) throws SQLException {
+    private User extractUser(ResultSet rs) throws SQLException {
         if (!rs.next()) {
             System.out.println("null");
             return null;
