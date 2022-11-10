@@ -17,7 +17,7 @@ ___ presentation appears planned and flows naturally
 
 ### Output (80%)
 
-___ logged in users can view their profile
+___ logged-in users can view their profile
 
 ___ can fully CRUD users and ads
 

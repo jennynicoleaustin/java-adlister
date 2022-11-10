@@ -9,7 +9,6 @@ import java.sql.*;
 
 public class MySQLUsersDao implements Users {
     private Connection connection = null;
-
     public MySQLUsersDao(Config config) throws SQLException {
         DriverManager.registerDriver(new Driver());
         connection = DriverManager.getConnection(
@@ -30,6 +29,18 @@ public class MySQLUsersDao implements Users {
             throw new RuntimeException("Sorry could not find user", e);
         }
     }
+    private User extractUser(ResultSet rs) throws SQLException {
+        if (!rs.next()) {
+            System.out.println("null");
+            return null;
+        }
+        return new User(
+                rs.getLong(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4)
+        );
+    }
 
     @Override
     public Long insert(User user) throws SQLException {
@@ -44,16 +55,4 @@ public class MySQLUsersDao implements Users {
         return rs.getLong(1);
     }
 
-    private User extractUser(ResultSet rs) throws SQLException {
-        if (!rs.next()) {
-            System.out.println("null");
-            return null;
-        }
-        return new User(
-                rs.getLong(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getString(4)
-        );
-    }
 }
